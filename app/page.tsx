@@ -1,11 +1,4 @@
 import Hero from "@/components/Hero";
-import GenerateFood from "@/components/generateFood";
-import { FloatingNav } from "@/components/ui/floatingNavbar";
-import Image from "next/image";
-import { MdOutlineMenuBook } from "react-icons/md";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
 import About from "@/components/about";
 import Vector from "@/components/images/vector2.png";
 
