@@ -4,6 +4,7 @@ import { loadFavoritesFromLocalStorage, saveFavoritesToLocalStorage } from '@/co
 import Magicbutton from '@/components/ui/Magicbutton';
 import { FaTrash } from 'react-icons/fa';  // Import icon
 import LoadingSpinner from '@/components/utils/LoadingComponent'; // Import loading spinner component
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 
 interface Meal {
   idMeal: string;
@@ -40,8 +41,9 @@ const Favourites: React.FC = () => {
   }
 
   return (
-    <div className='mt-20 max-w-7xl mx-auto px-4'>
-      <h1 className='text-center uppercase text-lg my-5'>Your Favourites</h1>
+    <div className='flex flex-col items-center justify-center my-10 mt-40 text-white z-10'>
+      <TextGenerateEffect words={'Your Favorites'  }
+      className='text-center text-[40px] md:text-4xl lg:text-5xl text-blue-100'/>
       {favorites.length > 0 ? (
         <div className="grid grid-cols-3 gap-4">
           {favorites.map(meal => (

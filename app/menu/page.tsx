@@ -5,6 +5,7 @@ import { saveFavoritesToLocalStorage, loadFavoritesFromLocalStorage } from '@/co
 import MagicButton from '../../components/ui/Magicbutton';
 import { FaHeart, FaArrowLeft } from 'react-icons/fa';  // Import icons
 import LoadingSpinner from '../../components/utils/LoadingComponent';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 
 interface Meal {
   idMeal: string;
@@ -80,8 +81,9 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className='mt-20 max-w-7xl mx-auto px-4'>
-      <h1 className='text-center uppercase text-lg my-5'>Our Exquisite Menu</h1>
+    <div className='flex flex-col items-center justify-center my-10 mt-40 text-white z-10'>
+      <TextGenerateEffect words={'Our Exquisite Menu'  }
+      className='text-center text-[40px] md:text-4xl lg:text-5xl text-blue-100'/>
       {loading ? (
         <div className="flex justify-center items-center h-screen">
           <LoadingSpinner /> {/* Show loading spinner while fetching data */}

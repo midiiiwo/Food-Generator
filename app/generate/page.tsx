@@ -4,6 +4,7 @@ import { saveFavoritesToLocalStorage, loadFavoritesFromLocalStorage } from '@/co
 import MagicButton from '../../components/ui/Magicbutton';
 import LoadingSpinner from '../../components/utils/LoadingComponent';
 import { FaHeart, FaThumbsDown } from 'react-icons/fa';
+import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 
 interface Meal {
   idMeal: string;
@@ -56,7 +57,9 @@ const GenerateMeal: React.FC = () => {
   }
 
   return (
-    <div className='flex justify-center items-center h-screen'>
+    <div className='flex flex-col items-center justify-center my-10 mt-40 text-white z-10'>
+      <TextGenerateEffect words={'Our best random meals for you'  }
+      className='text-center text-[40px] md:text-4xl lg:text-5xl text-blue-100'/>
       <div className='bg-black-100 border-2 border-white shadow-lg rounded-lg w-80 h-auto p-4 flex flex-col justify-between items-center'>
         <img
           src={meal?.strMealThumb}
