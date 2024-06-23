@@ -1,10 +1,9 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid';
 import { saveFavoritesToLocalStorage, loadFavoritesFromLocalStorage } from '@/components/utils/cacheStorage';
-import MagicButton from '../../components/ui/Magicbutton';
-import { FaHeart, FaArrowLeft } from 'react-icons/fa';  // Import icons
+import MagicButton from '@/components/ui/Magicbutton';
 import LoadingSpinner from '../../components/utils/LoadingComponent';
+import { FaHeart, FaArrowLeft } from 'react-icons/fa';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
 
 interface Meal {
@@ -23,7 +22,7 @@ const Page: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [meals, setMeals] = useState<Meal[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true); // State for loading indicator
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -36,7 +35,7 @@ const Page: React.FC = () => {
       } catch (error) {
         console.error('Error fetching categories:', error);
       } finally {
-        setLoading(false); // Turn off loading indicator after fetching
+        setLoading(false);
       }
     };
 
@@ -45,7 +44,7 @@ const Page: React.FC = () => {
 
   const fetchMealsByCategory = async (category: string) => {
     try {
-      setLoading(true); // Set loading to true before fetching meals
+      setLoading(true);
       const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
       const data = await response.json();
       if (data.meals) {
@@ -58,7 +57,7 @@ const Page: React.FC = () => {
     } catch (error) {
       console.error(`Error fetching meals for category ${category}:`, error);
     } finally {
-      setLoading(false); // Turn off loading indicator after fetching
+      setLoading(false);
     }
   };
 
@@ -81,22 +80,24 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center my-10 mt-40 text-white z-10'>
-      <TextGenerateEffect words={'Our Exquisite Menu'  }
-      className='text-center text-[40px] md:text-4xl lg:text-5xl text-blue-100'/>
+    <div className='flex flex-col items-center justify-center my-10 mt-40 text-white z-10 px-4 md:px-0'>
+      <TextGenerateEffect
+        words='Our Exquisite Menu'
+        className='text-center text-[30px] md:text-4xl lg:text-5xl text-blue-100'
+      />
       {loading ? (
         <div className="flex justify-center items-center h-screen">
-          <LoadingSpinner /> {/* Show loading spinner while fetching data */}
+          <LoadingSpinner />
         </div>
       ) : selectedCategory ? (
         <>
-          <div className="grid grid-cols-3 gap-4 p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 w-full max-w-6xl">
             {meals.map(meal => (
-              <div key={meal.idMeal} className="bg-black-100 border-2 border-white shadow-lg rounded-lg p-4 ">
+              <div key={meal.idMeal} className="bg-black-100 border-2 border-white shadow-lg rounded-lg p-4">
                 <img
                   src={meal.strMealThumb}
                   alt={meal.strMeal}
-                  className="w-full h-48 object-cover rounded-t-xl"
+                  className="w-full h-48 object-cover rounded-t-lg"
                 />
                 <h3 className="text-lg text-white font-bold mt-2">{meal.strMeal}</h3>
                 <div className="flex justify-center mt-2">
@@ -105,7 +106,7 @@ const Page: React.FC = () => {
                     icon={<FaHeart />}
                     position="left"
                     handleClick={() => handleAddToFavorites(meal)}
-                    otherClasses="bg-green-500 hover:bg-green-700"
+                    otherClasses="bg-green-500 hover:bg-green-700 px-4 py-2 text-xs md:text-sm"
                   />
                 </div>
               </div>
@@ -117,22 +118,22 @@ const Page: React.FC = () => {
               icon={<FaArrowLeft />}
               position="left"
               handleClick={handleBack}
-              otherClasses="bg-blue-500 hover:bg-blue-700"
+              otherClasses="bg-blue-500 hover:bg-blue-700 px-4 py-2 text-xs md:text-sm"
             />
           </div>
         </>
       ) : (
-        <div className="grid grid-cols-3 gap-4 bg-black-100 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 w-full max-w-6xl">
           {categories.map(category => (
             <div
               key={category.idCategory}
-              className="bg-black-100 border-2 border-white shadow-lg rounded-lg p-4 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 "
+              className="bg-black-100 border-2 border-white shadow-lg rounded-lg p-4 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105"
               onClick={() => handleCategoryClick(category.strCategory)}
             >
               <img
                 src={category.strCategoryThumb}
                 alt={category.strCategory}
-                className="w-full h-48 object-cover rounded-t-xl"
+                className="w-full h-48 object-cover rounded-t-lg"
               />
               <h3 className="text-lg text-white font-bold mt-2">{category.strCategory}</h3>
             </div>

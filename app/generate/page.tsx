@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { saveFavoritesToLocalStorage, loadFavoritesFromLocalStorage } from '@/components/utils/cacheStorage';
-import MagicButton from '../../components/ui/Magicbutton';
+import MagicButton from '@/components/ui/Magicbutton';
 import LoadingSpinner from '../../components/utils/LoadingComponent';
 import { FaHeart, FaThumbsDown } from 'react-icons/fa';
 import { TextGenerateEffect } from '@/components/ui/text-generate-effect';
@@ -57,10 +57,12 @@ const GenerateMeal: React.FC = () => {
   }
 
   return (
-    <div className='flex flex-col items-center justify-center my-10 mt-40 text-white z-10'>
-      <TextGenerateEffect words={'Our best random meals for you'  }
-      className='text-center text-[40px] md:text-4xl lg:text-5xl text-blue-100'/>
-      <div className='bg-black-100 border-2 border-white shadow-lg rounded-lg w-80 h-auto p-4 flex flex-col justify-between items-center'>
+    <div className='flex flex-col items-center justify-center my-10 mt-40 text-white z-10 px-4 md:px-0'>
+      <TextGenerateEffect 
+        words='Our best random meals for you'
+        className='text-center text-[30px] md:text-4xl lg:text-5xl text-blue-100'
+      />
+      <div className='bg-black-100 border-2 border-white shadow-lg rounded-lg w-full max-w-md p-4 flex flex-col justify-between items-center mt-10'>
         <img
           src={meal?.strMealThumb}
           alt={meal?.strMeal}
@@ -73,14 +75,14 @@ const GenerateMeal: React.FC = () => {
             icon={<FaHeart />}
             position='left'
             handleClick={() => handleAddToFavorites(meal!)}
-            otherClasses='bg-green-500 hover:bg-green-700 px-2 py-1 text-xs'
+            otherClasses='bg-green-500 hover:bg-green-700 px-4 py-2 text-xs md:text-sm'
           />
           <MagicButton
             title='Dislike'
             icon={<FaThumbsDown />}
             position='left'
             handleClick={handleDislike}
-            otherClasses='bg-red-500 hover:bg-red-700 px-2 py-1 text-xs'
+            otherClasses='bg-red-500 hover:bg-red-700 px-4 py-2 text-xs md:text-sm'
           />
         </div>
       </div>
